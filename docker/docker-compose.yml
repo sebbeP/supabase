@@ -393,7 +393,7 @@ services:
 
   imgproxy:
     container_name: supabase-imgproxy
-    image: darthsim/imgproxy:v4.0.21
+    image: darthsim/imgproxy:v4.0.23
     restart: unless-stopped
     volumes:
       - ./volumes/storage:/var/lib/storage:z
@@ -433,7 +433,7 @@ services:
 
   functions:
     container_name: supabase-edge-functions
-    image: supabase/edge-runtime:v1.77.9
+    image: supabase/edge-runtime:v1.78.1
     mem_limit: ${FUNCTIONS_MEMORY_LIMIT:-2g}
     restart: unless-stopped
     volumes:
@@ -478,7 +478,7 @@ services:
   db:
     container_name: supabase-db
     # To upgrade an existing Postgres 15 database in place, see utils/upgrade-pg17.sh.
-    image: supabase/postgres:17.6.1.136
+    image: supabase/postgres:17.6.1.178 
     restart: unless-stopped
     volumes:
       - ./volumes/db/realtime.sql:/docker-entrypoint-initdb.d/migrations/99-realtime.sql:Z
@@ -532,7 +532,7 @@ services:
   # Update the DATABASE_URL if you are using an external Postgres database
   supavisor:
     container_name: supabase-pooler
-    image: supabase/supavisor:2.9.13
+    image: supabase/supavisor:2.10.0
     restart: unless-stopped
     ports:
       - ${POSTGRES_PORT}:5432
